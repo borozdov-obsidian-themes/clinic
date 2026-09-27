@@ -1,0 +1,490 @@
+/*
+  Borozdov Clinic — an Obsidian theme from the Borozdov collection.
+  Two faces: Frosted (light, a clinical design-system workshop on frosted
+  paper) and Darkroom (dark, the same workshop with the lights off). White
+  cards on hairlines, 18px pills for everything you touch, ink fills and
+  one red for the caret.
+  https://github.com/borozdov-obsidian-themes/clinic
+
+  License: MIT (this file). No embedded fonts.
+*/
+
+/* ===== 1. PALETTE =====
+   Only these values differ by face. Almost entirely achromatic: ink,
+   white, warm greys. The dark-on-light inversion is the only action
+   treatment — ink fills the main button, a checked task and a toggle. One
+   red is reserved for the caret and the highlighter. */
+
+.theme-light {
+  color-scheme: light;
+
+  --canvas: #fff;
+  --card: #fff;
+  --surface: #fafafa;
+  --frost: #f5f5f5;
+  --hover: #ececec;
+  --hairline: #e5e5e5;
+  --strong: #d4d4d4;
+  --tertiary: #a3a3a3;
+  --slate: #737373;
+  --soft: #171717;
+  --ink: #0a0a0a;
+  --on-ink: #fafafa;
+  --ember: #e7000b;
+  --mark: rgb(231 0 11 / 12%);
+  --veil: rgb(10 10 10 / 12%);
+  --scrim: rgb(10 10 10 / 40%);
+  --lift: 0 0 0 1px rgb(23 23 23 / 5%), 0 1px 3px rgb(0 0 0 / 10%), 0 1px 2px -1px rgb(0 0 0 / 10%);
+  --accent-h: 0;
+  --accent-s: 0%;
+  --accent-l: 4%;
+  --color-red: #e7000b;
+  --color-orange: #b35a10;
+  --color-yellow: #8a6400;
+  --color-green: #2d7a4b;
+  --color-cyan: #0b7a94;
+  --color-blue: #2d5fb3;
+  --color-purple: #6d3aa8;
+  --color-pink: #b8397e;
+  --color-red-rgb: 231, 0, 11;
+  --color-orange-rgb: 179, 90, 16;
+  --color-yellow-rgb: 138, 100, 0;
+  --color-green-rgb: 45, 122, 75;
+  --color-cyan-rgb: 11, 122, 148;
+  --color-blue-rgb: 45, 95, 179;
+  --color-purple-rgb: 109, 58, 168;
+  --color-pink-rgb: 184, 57, 126;
+  --callout-quote: #737373;
+  --code-comment: #a3a3a3;
+  --code-function: #2d5fb3;
+  --code-keyword: #0a0a0a;
+  --code-operator: #737373;
+  --code-property: #0b7a94;
+  --code-punctuation: #737373;
+  --code-string: #2d7a4b;
+  --code-tag: #6d3aa8;
+  --code-value: #b35a10;
+  --code-important: #e7000b;
+}
+
+.theme-dark {
+  color-scheme: dark;
+
+  --canvas: #0a0a0a;
+  --card: #171717;
+  --surface: #171717;
+  --frost: #262626;
+  --hover: #2e2e2e;
+  --hairline: #2e2e2e;
+  --strong: #404040;
+  --tertiary: #737373;
+  --slate: #a3a3a3;
+  --soft: #e5e5e5;
+  --ink: #fafafa;
+  --on-ink: #0a0a0a;
+  --ember: #ff6467;
+  --mark: rgb(255 100 103 / 22%);
+  --veil: rgb(250 250 250 / 14%);
+  --scrim: rgb(0 0 0 / 60%);
+  --lift: none;
+  --accent-h: 0;
+  --accent-s: 0%;
+  --accent-l: 98%;
+  --color-red: #ff6467;
+  --color-orange: #f0a66a;
+  --color-yellow: #e6c15a;
+  --color-green: #7cc99a;
+  --color-cyan: #67c7dc;
+  --color-blue: #7fa9ee;
+  --color-purple: #c39be8;
+  --color-pink: #ee97c2;
+  --color-red-rgb: 255, 100, 103;
+  --color-orange-rgb: 240, 166, 106;
+  --color-yellow-rgb: 230, 193, 90;
+  --color-green-rgb: 124, 201, 154;
+  --color-cyan-rgb: 103, 199, 220;
+  --color-blue-rgb: 127, 169, 238;
+  --color-purple-rgb: 195, 155, 232;
+  --color-pink-rgb: 238, 151, 194;
+  --callout-quote: #a3a3a3;
+  --code-comment: #737373;
+  --code-function: #7fa9ee;
+  --code-keyword: #fafafa;
+  --code-operator: #a3a3a3;
+  --code-property: #67c7dc;
+  --code-punctuation: #a3a3a3;
+  --code-string: #7cc99a;
+  --code-tag: #c39be8;
+  --code-value: #f0a66a;
+  --code-important: #ff6467;
+}
+
+/* ===== 2. TYPE & SHAPE =====
+   One sans: 400 for the text, 500 for labels, 600 for headings tracked
+   tight as they grow. Two radii only — 18px on everything interactive,
+   24px on cards. */
+
+body {
+  --font-interface-theme: -apple-system, "BlinkMacSystemFont", "Segoe UI",
+    "Roboto", "Helvetica Neue", "Arial", sans-serif;
+  --font-text-theme: -apple-system, "BlinkMacSystemFont", "Segoe UI",
+    "Roboto", "Helvetica Neue", "Arial", sans-serif;
+  --font-monospace-theme: "SFMono-Regular", "SF Mono", "JetBrains Mono",
+    ui-monospace, "Menlo", "Consolas", monospace;
+  --line-height-normal: 1.5;
+  --bold-weight: 600;
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 24px;
+  --radius-xl: 24px;
+  --input-radius: 18px;
+  --button-radius: 18px;
+  --checkbox-radius: 5px;
+  --checkbox-marker-color: var(--on-ink);
+  --input-shadow: none;
+  --input-shadow-hover: none;
+  --h1-size: 2.1em; --h2-size: 1.55em; --h3-size: 1.25em;
+  --h4-size: 1.05em; --h5-size: 1em; --h6-size: 0.9em;
+  --h1-weight: 600; --h2-weight: 600; --h3-weight: 600;
+  --h4-weight: 600; --h5-weight: 600; --h6-weight: 600;
+  --inline-title-size: 2.5em;
+  --inline-title-weight: 600;
+  --h1-line-height: 1.1; --h2-line-height: 1.2; --h3-line-height: 1.3;
+  --h4-line-height: 1.35; --h5-line-height: 1.4; --h6-line-height: 1.4;
+  --h1-color: var(--ink); --h2-color: var(--ink); --h3-color: var(--ink);
+  --h4-color: var(--ink); --h5-color: var(--soft); --h6-color: var(--slate);
+}
+
+.inline-title {
+  letter-spacing: -0.04em;
+}
+
+.markdown-rendered h1, .markdown-source-view.mod-cm6 .cm-header-1 {
+  letter-spacing: -0.03em;
+}
+
+.markdown-rendered h2, .markdown-rendered h3,
+.markdown-source-view.mod-cm6 .cm-header-2,
+.markdown-source-view.mod-cm6 .cm-header-3 {
+  letter-spacing: -0.025em;
+}
+
+/* Captions: small tracked capitals. */
+.markdown-rendered th,
+.metadata-property-key-input {
+  font-size: 0.75em;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ===== 3. BASE VARIABLE MAPPING =====
+   Set on .theme-dark / .theme-light, where Obsidian declares them too; the
+   theme loads later and wins the tie. */
+
+.theme-dark,
+.theme-light {
+  --background-primary: var(--canvas);
+  --background-primary-alt: var(--frost);
+  --background-secondary: var(--surface);
+  --background-secondary-alt: var(--frost);
+  --background-modifier-hover: var(--hover);
+  --background-modifier-active-hover: var(--hover);
+  --background-modifier-border: var(--hairline);
+  --background-modifier-border-hover: var(--strong);
+  --background-modifier-border-focus: var(--strong);
+  --background-modifier-form-field: var(--frost);
+  --text-normal: var(--ink);
+  --text-muted: var(--slate);
+  --text-faint: var(--tertiary);
+  --text-accent: var(--ink);
+  --text-accent-hover: var(--ember);
+  --text-on-accent: var(--on-ink);
+  --text-on-accent-inverted: var(--on-ink);
+  --text-selection: var(--veil);
+  --text-highlight-bg: var(--mark);
+  --color-accent: var(--ink);
+  --color-accent-1: var(--ink);
+  --color-accent-2: var(--soft);
+  --interactive-accent: var(--ink);
+  --interactive-accent-hover: var(--soft);
+  --interactive-normal: var(--frost);
+  --interactive-hover: var(--hover);
+  --divider-color: var(--hairline);
+  --tab-outline-color: var(--hairline);
+  --caret-color: var(--ember);
+  --tab-container-background: var(--frost);
+  --titlebar-background: var(--frost);
+  --titlebar-background-focused: var(--frost);
+  --ribbon-background: var(--surface);
+  --ribbon-background-collapsed: var(--canvas);
+  --status-bar-background: var(--surface);
+  --nav-item-background-hover: var(--hover);
+  --nav-item-background-active: var(--hover);
+  --nav-item-color-active: var(--ink);
+  --nav-item-background-selected: var(--hover);
+  --nav-item-color-selected: var(--ink);
+  --nav-indentation-guide-color: var(--hairline);
+  --callout-default: var(--slate);
+  --callout-info: var(--color-blue);
+  --callout-todo: var(--color-blue);
+}
+
+/* ===== 4. LINKS =====
+   Ink, underlined; the red shows only on hover. */
+
+body {
+  --link-color: var(--ink);
+  --link-color-hover: var(--ember);
+  --link-external-color: var(--ink);
+  --link-external-color-hover: var(--ember);
+  --link-decoration: underline;
+  --link-decoration-hover: underline;
+  --link-external-decoration: underline;
+  --link-external-decoration-hover: underline;
+  --link-unresolved-color: var(--slate);
+  --link-unresolved-opacity: 0.8;
+  --link-unresolved-decoration-style: dotted;
+}
+
+/* ===== 5. CALLOUTS =====
+   Cards: white, a hairline edge stacked with a faint elevation layer, 24px
+   corners, and the title in the type's colour. */
+
+body {
+  --callout-border-width: 1px;
+  --callout-border-opacity: 1;
+  --callout-radius: 24px;
+  --callout-padding: 1.1rem 1.4rem;
+  --callout-title-weight: 600;
+  --callout-content-padding: 0.4rem 0 0;
+  --callout-blend-mode: normal;
+}
+
+.callout {
+  background-color: var(--card);
+  border-color: var(--hairline);
+  box-shadow: var(--lift);
+}
+
+.callout-content > :first-child { margin-top: 0; }
+.callout-content > :last-child { margin-bottom: 0; }
+
+/* ===== 6. CODE ===== */
+
+body {
+  --code-background: var(--frost);
+  --code-normal: var(--soft);
+  --code-radius: 6px;
+  --code-border-width: 0;
+  --code-border-color: transparent;
+}
+
+.markdown-rendered pre {
+  border-radius: 10px;
+}
+
+/* ===== 7. BLOCKQUOTE ===== */
+
+body {
+  --blockquote-border-thickness: 2px;
+  --blockquote-border-color: var(--ink);
+  --blockquote-color: var(--soft);
+  --blockquote-font-style: normal;
+}
+
+/* ===== 8. TAGS =====
+   A solid badge: an ink capsule with pale text. */
+
+body {
+  --tag-size: 0.75em;
+  --tag-weight: 500;
+  --tag-radius: 18px;
+  --tag-padding-x: 0.7em;
+  --tag-padding-y: 0.2em;
+  --tag-border-width: 0;
+  --tag-color: var(--on-ink);
+  --tag-color-hover: var(--on-ink);
+  --tag-background: var(--soft);
+  --tag-background-hover: var(--ink);
+  --tag-decoration-hover: none;
+}
+
+/* ===== 9. TABLES ===== */
+
+body {
+  --table-border-width: 1px;
+  --table-border-color: var(--hairline);
+  --table-header-background: var(--frost);
+  --table-header-background-hover: var(--hover);
+  --table-header-border-color: var(--hairline);
+  --table-header-size: 0.75em;
+  --table-header-weight: 500;
+  --table-header-color: var(--slate);
+  --table-row-background-hover: var(--surface);
+  --table-row-alt-background: transparent;
+  --table-row-alt-background-hover: var(--surface);
+}
+
+.markdown-rendered table {
+  background-color: var(--card);
+  border: var(--table-border-width) solid var(--table-border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* The frame belongs to the table so it follows the corners; cells draw only
+   the inner grid, an end and a bottom line, none on the outer edges. */
+.markdown-rendered th,
+.markdown-rendered td {
+  border-block-start-width: 0;
+  border-inline-start-width: 0;
+}
+
+.markdown-rendered tr > :last-child {
+  border-inline-end-width: 0;
+}
+
+.markdown-rendered table > :last-child > tr:last-child > * {
+  border-block-end-width: 0;
+}
+
+/* ===== 10. BUTTONS =====
+   18px capsules. Plain buttons are a soft frost fill with no border; the
+   one that matters is the ink inversion. */
+
+button:not(.clickable-icon) {
+  background-color: var(--frost);
+  border: 1px solid transparent;
+  box-shadow: none;
+  font-weight: 500;
+}
+
+@media (hover: hover) {
+  button:not(.clickable-icon):hover {
+    background-color: var(--hover);
+  }
+}
+
+button.mod-cta:not(.clickable-icon) {
+  background-color: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-ink);
+}
+
+@media (hover: hover) {
+  button.mod-cta:not(.clickable-icon):hover {
+    background-color: var(--soft);
+    border-color: var(--soft);
+  }
+}
+
+/* ===== 11. FIELDS & PROPERTIES =====
+   Fields rest as a soft frost fill with no border; a hairline appears on
+   focus. */
+
+select.dropdown, input[type="text"], input[type="search"], input[type="number"],
+textarea {
+  /* background-color, not the `background` shorthand: the shorthand resets
+     the dropdown's own arrow image. */
+  background-color: var(--background-modifier-form-field);
+  border: 1px solid transparent;
+}
+
+/* No focus ring while typing: the caret and the selection already show
+   where you are. Covers form fields and every contenteditable surface. */
+select.dropdown:focus, input:focus, textarea:focus,
+select.dropdown:focus-visible, input:focus-visible, textarea:focus-visible,
+[contenteditable]:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+select.dropdown:focus, input[type="text"]:focus, input[type="search"]:focus,
+input[type="number"]:focus, textarea:focus {
+  border-color: var(--hairline);
+}
+
+/* A property's key is a label, not a field. input.* matches the frame rule
+   above at (0,1,1), so the element prefix is needed to win it. */
+input.metadata-property-key-input {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--slate);
+}
+
+body {
+  --pill-background: var(--frost);
+  --pill-background-hover: var(--hover);
+  --pill-border-color: transparent;
+  --pill-border-color-hover: var(--hairline);
+  --pill-color: var(--ink);
+  --pill-color-hover: var(--ink);
+  --pill-radius: 18px;
+}
+
+/* ===== 12. SURFACES ===== */
+
+.modal-bg {
+  background-color: var(--scrim);
+}
+
+.modal, .menu, div.popover, .suggestion-container, .prompt {
+  background-color: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: 24px;
+  box-shadow: var(--lift);
+}
+
+.menu, .suggestion-container {
+  border-radius: 10px;
+}
+
+/* Obsidian pads an embed only on the left, for an accent bar this theme
+   doesn't draw. Even padding all round, with room for the open-link icon. */
+body {
+  --embed-padding: var(--size-4-3) var(--size-4-8) var(--size-4-3) var(--size-4-4);
+  --embed-border-start: none;
+}
+
+.markdown-embed {
+  background-color: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: 24px;
+  box-shadow: var(--lift);
+}
+
+/* A hover preview is already a panel: the embed inside it stays flat. */
+.popover.hover-popover > .markdown-embed {
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+hr, .cm-hr { border-color: var(--hairline); }
+
+/* ===== 13. MOBILE =====
+   The phone layout re-declares tag and field colors on .is-mobile.theme-*,
+   outranking the rules above; the same selectors bring them back. */
+
+.is-mobile.theme-dark,
+.is-mobile.theme-light {
+  --tag-background: var(--soft);
+  --background-modifier-form-field: var(--frost);
+  --background-modifier-hover: var(--hover);
+}
+
+/* ===== 14. REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    --anim-duration-superfast: 0s;
+    --anim-duration-fast: 0s;
+    --anim-duration-moderate: 0s;
+    --anim-duration-slow: 0s;
+  }
+}
